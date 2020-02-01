@@ -8,7 +8,7 @@ def exhaustive(pointList):
     allPermutations = (list(itertools.permutations(pointList)))
     #init shortest vars
     shortestPermutation = []
-    shortestPermutationDistance = -1
+    shortestPermutationDistance = -10203040506
     for permutation in allPermutations:
         #convert permutation to list
         permutation = list(permutation)
@@ -16,7 +16,7 @@ def exhaustive(pointList):
         permutation.insert(0,firstPoint)
         permutation.append(firstPoint)
 
-        if shortestPermutationDistance == -1:
+        if shortestPermutationDistance == -10203040506:
             shortestPermutation = permutation
             shortestPermutationDistance = getTotalDistance(permutation)
         else:
