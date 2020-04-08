@@ -79,11 +79,74 @@ def runSimulations(n):
         print(p,end='')
     print(totalExTime/3)
 
-'''
-runWith = [6,7,8,9,10]
 
-for x in runWith:
-    runSimulations(x)
-'''
+def runNearestNeighbor(n):
+    print("\nRUNNING nearestNeighbor SIMULATION WITH SIZE",n)
 
-runSimulations(0)
+    generateInputFile(n)
+
+    totalNnTime = 0.0
+    totalExTime = 0.0
+    #perform 3 trials
+    for i in range(3):
+        pointList = []
+        readInputFile(pointList)
+
+        master = list.copy(pointList)
+
+        startAndEnd = pointList[0]
+        totalLength = 0.0;
+        nnPath = []
+        nnStartTime = time.time()
+        nearestNeighbor(pointList,startAndEnd,nnPath,totalLength)
+        nnPath.append(startAndEnd)
+        nnTotalTime = time.time() - nnStartTime
+        totalNnTime += nnTotalTime
+        totalLength=getTotalDistance(nnPath)
+
+    #print out paths and averages
+    print("{:.3f}".format(totalLength))
+    for p in nnPath:
+        print(p,end='')
+    print(totalNnTime/3)
+
+    print("\n")
+
+
+def runExhaustive(n):
+    print("\nRUNNING Exhaustive SIMULATION WITH SIZE",n)
+
+    generateInputFile(n)
+
+    totalNnTime = 0.0
+    totalExTime = 0.0
+    #perform 3 trials
+    for i in range(3):
+        pointList = []
+        readInputFile(pointList)
+
+        exStartTime = time.time()
+        exAns=exhaustive(pointList)
+        exTotalTime = time.time() - exStartTime
+        totalExTime += exTotalTime
+        shortestPermutation=exAns[1]
+        shortestPermutationDistance=exAns[0]
+
+
+    print("{:.3f}".format(shortestPermutationDistance))
+    for p in shortestPermutation:
+        print(p,end='')
+    print(totalExTime/3)
+
+
+
+
+
+runBothWith = [6,7,8,9,10]
+runNnWith = [20,30,40,50]
+runExWith = [6,7,9,10]
+
+for x in runNnWith:
+    runNearestNeighbor(x)
+for x in runExWith:
+    runExhaustive(x)
