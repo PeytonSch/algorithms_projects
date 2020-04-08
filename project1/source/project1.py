@@ -32,7 +32,8 @@ def generateInputFile(n):
 def runSimulations(n):
     print("\nRUNNING SIMULATION WITH SIZE",n)
 
-    generateInputFile(n)
+    #generateInputFile(n)
+
 
     totalNnTime = 0.0
     totalExTime = 0.0
@@ -53,7 +54,7 @@ def runSimulations(n):
         totalNnTime += nnTotalTime
         totalLength=getTotalDistance(nnPath)
 
-
+        '''
         pointList = master
 
         exStartTime = time.time()
@@ -62,7 +63,7 @@ def runSimulations(n):
         totalExTime += exTotalTime
         shortestPermutation=exAns[1]
         shortestPermutationDistance=exAns[0]
-
+        '''
 
 
     #print out paths and averages
@@ -78,8 +79,11 @@ def runSimulations(n):
         print(p,end='')
     print(totalExTime/3)
 
-
+'''
 runWith = [6,7,8,9,10]
 
 for x in runWith:
     runSimulations(x)
+'''
+
+runSimulations(0)
