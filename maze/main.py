@@ -5,6 +5,7 @@ from my_util import *
 
 maze = readFile()
 squares = []
+diagonals = []
 
 #generate all nodes
 for y in range(1,len(maze)+1):
@@ -12,6 +13,9 @@ for y in range(1,len(maze)+1):
         line = maze[0]
         node = Square(x,y,maze[x-1][y-1])
         squares.append(node)
+
+diagonals = squares
+
 #add pointers
 for y in range(1,len(maze)+1):
     for x in range(1,len(line)+1):
@@ -32,15 +36,22 @@ for y in range(1,len(maze)+1):
         if int(y) + value < len(maze)+1:
             current_node.append_straight(getNode(x,y+value,squares))
 
+
+        current_node = getNode(x, y, diagonals)
+        value = abs(int(current_node.value))
+        # append straight and diagonal nodes to list
+
         #check up left
         if int(x) - value > 0 and y - value > 0:
-            current_node.append_diag(getNode(x-value,y-value,squares))
+            current_node.append_diag(getNode(x-value,y-value,diagonals))
         #check up right
         if int(x) + value < len(line)+1 and y - value > 0:
-            current_node.append_diag(getNode(x+value,y-value,squares))
+            current_node.append_diag(getNode(x+value,y-value,diagonals))
         #check down left
         if int(x) - value > 0 and y + value < len(maze)+1:
-            current_node.append_diag(getNode(x-value,y+value,squares))
+            current_node.append_diag(getNode(x-value,y+value,diagonals))
         #check down right
         if int(x) + value < len(line)+1 and y + value < len(maze)+1:
-            current_node.append_diag(getNode(x+value,y+value,squares))
+            current_node.append_diag(getNode(x+value,y+value,diagonals))
+
+
