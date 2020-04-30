@@ -1,23 +1,13 @@
-def DFSUtil(self, v, visited):
+def ourDFS(self, node, discovered_list):
+    if node.color == "finish":
+        return discovered_list
 
-        # Mark the current node as visited
-        # and print it
-        visited[v] = True
-        print(v, end = ' ')
+    node.set_visited("Discovered")
+    discovered_list.append(node)
 
-        # Recur for all the vertices
-        # adjacent to this vertex
-        for i in self.graph[v]:
-            if visited[i] == False:
-                self.DFSUtil(i, visited)
+    for i in node.adj_list:
+        if i.visited == "Undiscovered":
+            self.ourDFS(i)
+    node.set_visited="Processed"
 
-    # The function to do DFS traversal. It uses
-    # recursive DFSUtil()
-    def DFS(self, v):
-
-        # Mark all the vertices as not visited
-        visited = [False] * (len(self.graph))
-
-        # Call the recursive helper function
-        # to print DFS traversal
-        self.DFSUtil(v, visited)
+    discovered_list.remove(node)
