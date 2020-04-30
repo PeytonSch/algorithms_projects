@@ -105,7 +105,14 @@ for y in range(1,len(maze)+1):
 
 first_node = getNode(1, 1, squares)
 empty = []
+ans = []
+print(type(ans))
+ourDFS(first_node, empty,ans)
+
+#print(type(ans))
+'''
 ans = ourDFS(first_node, empty)
 
 for e in ans:
     print("(",e.x,",",e.y,")")
+'''
