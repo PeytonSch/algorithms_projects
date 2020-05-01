@@ -104,11 +104,12 @@ for y in range(1,len(maze)+1):
 
 
 first_node = getNode(1, 1, squares)
-empty = []
+ans = []
 discovered = []
-ans = ourDFS(first_node, discovered,empty)
+ourDFS(first_node, discovered,ans)
 
 print(type(ans))
+print(len(ans))
 
 #ans = ourDFS(first_node, empty)
 

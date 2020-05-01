@@ -12,6 +12,7 @@ class Square:
         self.y = y_in
         self.value = int(value_in)
         self.visited = "Undiscovered"
+        self.adj_list = []
 
         if self.value < 0:
             self.color = "red"
