@@ -5,23 +5,25 @@ def ourDFS(node, discovered_list,ans):
     node.set_visited("Discovered")
     discovered_list.append(node)
 
-    print("Node Adj List Length:",len(node.adj_list),"of type",node.color)
+    #print("Node Adj List Length:",len(node.adj_list),"of type",node.color)
 
     for i in node.adj_list:
         if i.visited == "Undiscovered":
-
-
             ourDFS(i,discovered_list,ans)
 
 
             if node.color == "finish":
-                ans = discovered_list.copy()
-                print("Base Case")
-                #print(len(discovered_list))
+                #ans = discovered_list.copy()
 
+                for i in discovered_list:
+                    ans.append(i)
+                #print("Base Case")
+                #print(len(discovered_list))
+                print("solution found")
+                '''
                 for e in ans:
                     print("(",e.x,",",e.y,")",e.visited)
-
+                '''
                 return
 
 

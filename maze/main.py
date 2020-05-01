@@ -39,7 +39,7 @@ for y in range(1,len(maze)+1):
         value = abs(int(current_node.value))
         #append straight and diagonal nodes to list
 
-        if current_node.color == "red":
+        if not current_node.color == "black":
             continue
 
         #check left
@@ -79,47 +79,49 @@ for y in range(1,len(maze)+1):
 for y in range(1,len(maze)+1):
     for x in range(1,len(line)+1):
         current_node = getNode(x, y, diagonals)
+        value = abs(int(current_node.value))
+        if not current_node.color == "red":
+            continue
 
-    if current_node.color == "black":
-        continue
-
-    #check left
-    if int(x) - abs(value) > 0:
-        current_node.append_straight(getNode(x-value,y,squares))
-    #check right
-    if int(x) + value < len(line)+1:
-        current_node.append_straight(getNode(x+value,y,squares))
-    #check up
-    if int(y) - value > 0:
-        current_node.append_straight(getNode(x,y-value,squares))
-    #check down
-    if int(y) + value < len(maze)+1:
-        current_node.append_straight(getNode(x,y+value,squares))
+        #check left
+        if int(x) - abs(value) > 0:
+            current_node.append_straight(getNode(x-value,y,squares))
+        #check right
+        if int(x) + value < len(line)+1:
+            current_node.append_straight(getNode(x+value,y,squares))
+        #check up
+        if int(y) - value > 0:
+            current_node.append_straight(getNode(x,y-value,squares))
+        #check down
+        if int(y) + value < len(maze)+1:
+            current_node.append_straight(getNode(x,y+value,squares))
 
 for y in range(1,len(maze)+1):
     for x in range(1,len(line)+1):
         current_node = getNode(x, y, squares)
+        value = abs(int(current_node.value))
+        if current_node.color == "black":
+            continue
 
-    if current_node.color == "black":
-        continue
-
-    #check left
-    if int(x) - abs(value) > 0:
-        current_node.append_straight(getNode(x-value,y,diagonals))
-    #check right
-    if int(x) + value < len(line)+1:
-        current_node.append_straight(getNode(x+value,y,diagonals))
-    #check up
-    if int(y) - value > 0:
-        current_node.append_straight(getNode(x,y-value,diagonals))
-    #check down
-    if int(y) + value < len(maze)+1:
-        current_node.append_straight(getNode(x,y+value,diagonals))
+        #check up left
+        if int(x) - abs(value) > 0 and int(y) - value > 0:
+            current_node.append_straight(getNode(x-value,y-value,diagonals))
+        #check up right
+        if int(x) - value > 0 and y + value < len(line)+1:
+            current_node.append_straight(getNode(x-value,y+value,diagonals))
+        #check down left
+        if int(x) + value < len(line) + 1 and y - value > 0:
+            current_node.append_straight(getNode(x+value,y-value,diagonals))
+        #check down right
+        if int(x) + value < len(line) + 1 and y + value < len(line)+1:
+            current_node.append_straight(getNode(x+value,y+value,diagonals))
 
 
 first_node = getNode(1, 1, squares)
 ans = []
 discovered = []
+
+finished = False
 
 ourDFS(first_node, discovered,ans)
 
