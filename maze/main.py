@@ -2,8 +2,10 @@ from square import *
 from readInput import *
 from my_util import *
 from dfs import *
+import globals
+from tests import *
 
-
+globals.init()
 maze = readFile()
 squares = []
 diagonals = []
@@ -14,8 +16,14 @@ for y in range(1,len(maze)+1):
         line = maze[0]
         node = Square(x,y,maze[x-1][y-1])
         squares.append(node)
-
-diagonals = squares
+'''
+Needed to make these copies rather
+than referencing the same memory
+'''
+diagonals = squares.copy()
+test_different_addresses(squares,diagonals)
+#print(hex(id(diagonals)))
+#print(hex(id(squares)))
 
 #add pointers
 for y in range(1,len(maze)+1):
@@ -106,7 +114,12 @@ for y in range(1,len(maze)+1):
 first_node = getNode(1, 1, squares)
 ans = []
 discovered = []
-ourDFS(first_node, discovered,ans)
+
+#ourDFS(first_node, discovered,ans)
+
+
+test_adj_lists(first_node)
+print("Errors:",globals.error_count,"Nodes",globals.node_count)
 
 print(type(ans))
 print(len(ans))
