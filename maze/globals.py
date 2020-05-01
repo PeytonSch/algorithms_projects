@@ -5,3 +5,5 @@ def init():
     global ans
     node_count = 0
     error_count = 0
+    ans = []
+    finished = False

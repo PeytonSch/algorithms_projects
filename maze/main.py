@@ -41,19 +41,18 @@ for y in range(1,len(maze)+1):
 
         if not current_node.color == "black":
             continue
-
         #check left
         if int(x) - abs(value) > 0:
             current_node.append_straight(getNode(x-value,y,squares))
-        #check right
-        if int(x) + value < len(line)+1:
-            current_node.append_straight(getNode(x+value,y,squares))
         #check up
         if int(y) - value > 0:
             current_node.append_straight(getNode(x,y-value,squares))
         #check down
         if int(y) + value < len(maze)+1:
             current_node.append_straight(getNode(x,y+value,squares))
+        #check right
+        if int(x) + value < len(line)+1:
+            current_node.append_straight(getNode(x+value,y,squares))
 
 
 for y in range(1,len(maze)+1):
@@ -61,7 +60,7 @@ for y in range(1,len(maze)+1):
         current_node = getNode(x, y, diagonals)
         value = abs(int(current_node.value))
         # append straight and diagonal nodes to list
-        if current_node.color == "red":
+        if not current_node.color == "black":
             continue
         #check up left
         if int(x) - value > 0 and y - value > 0:
@@ -100,7 +99,7 @@ for y in range(1,len(maze)+1):
     for x in range(1,len(line)+1):
         current_node = getNode(x, y, squares)
         value = abs(int(current_node.value))
-        if current_node.color == "black":
+        if not current_node.color == "red":
             continue
 
         #check up left
@@ -123,6 +122,9 @@ discovered = []
 
 finished = False
 
+
+ans = []
+finished = False
 ourDFS(first_node, discovered,ans)
 
 
@@ -132,7 +134,7 @@ ourDFS(first_node, discovered,ans)
 print(type(ans))
 print(len(ans))
 
+for i in ans:
+    print ("(", i.x,",",i.y,")")
 #ans = ourDFS(first_node, empty)
 
-for e in ans:
-    print("(",e.x,",",e.y,")")

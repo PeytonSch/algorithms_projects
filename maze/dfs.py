@@ -1,9 +1,21 @@
+import globals
+
+ans = []
+finished = False
+
 def ourDFS(node, discovered_list,ans):
 
 
 
     node.set_visited("Discovered")
     discovered_list.append(node)
+
+    if node.color == "finish" and globals.finished == False:
+        globals.finished = True
+        for i in discovered_list:
+            ans.append(i)
+        print("solution found")
+        return
 
     #print("Node Adj List Length:",len(node.adj_list),"of type",node.color)
 
@@ -12,24 +24,7 @@ def ourDFS(node, discovered_list,ans):
             ourDFS(i,discovered_list,ans)
 
 
-            if node.color == "finish":
-                #ans = discovered_list.copy()
-
-                for i in discovered_list:
-                    ans.append(i)
-                #print("Base Case")
-                #print(len(discovered_list))
-                print("solution found")
-                '''
-                for e in ans:
-                    print("(",e.x,",",e.y,")",e.visited)
-                '''
-                return
-
-
-
-
 
     node.set_visited="Processed"
-
     discovered_list.remove(node)
+
