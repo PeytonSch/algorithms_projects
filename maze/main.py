@@ -16,12 +16,18 @@ for y in range(1,len(maze)+1):
         line = maze[0]
         node = Square(x,y,maze[x-1][y-1])
         squares.append(node)
+
+for y in range(1,len(maze)+1):
+    for x in range(1,len(maze[0])+1):
+        line = maze[0]
+        node = Square(x,y,maze[x-1][y-1])
+        diagonals.append(node)
 '''
 Needed to make these copies rather
 than referencing the same memory
 '''
-diagonals = squares.copy()
-test_different_addresses(squares,diagonals)
+#diagonals = squares.copy()
+#test_different_addresses(squares,diagonals)
 #print(hex(id(diagonals)))
 #print(hex(id(squares)))
 
@@ -115,11 +121,11 @@ first_node = getNode(1, 1, squares)
 ans = []
 discovered = []
 
-#ourDFS(first_node, discovered,ans)
+ourDFS(first_node, discovered,ans)
 
 
-test_adj_lists(first_node)
-print("Errors:",globals.error_count,"Nodes",globals.node_count)
+#test_adj_lists(first_node)
+#print("Errors:",globals.error_count,"Nodes",globals.node_count)
 
 print(type(ans))
 print(len(ans))

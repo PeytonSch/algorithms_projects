@@ -1,7 +1,7 @@
 
-def getNode(x,y,squares):
+def getNode(x,y,location):
     #print("Looking for ",x,y)
-    for element in squares:
+    for element in location:
         #print("--->  ", element.x,element.y)
         if element.x == x and element.y == y:
             return element
