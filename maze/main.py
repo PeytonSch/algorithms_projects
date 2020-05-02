@@ -4,6 +4,7 @@ from my_util import *
 from dfs import *
 import globals
 from tests import *
+from bfs import *
 
 globals.init()
 maze = readFile()
@@ -117,24 +118,20 @@ for y in range(1,len(maze)+1):
 
 
 first_node = getNode(1, 1, squares)
-ans = []
-discovered = []
-
 finished = False
 
-
 ans = []
-finished = False
-ourDFS(first_node, discovered,ans)
+#ourDFS(first_node, discovered,ans)
 
+path = [first_node]
+ans_string = find_path_bfs(first_node)
+print(ans_string)
 
 #test_adj_lists(first_node)
 #print("Errors:",globals.error_count,"Nodes",globals.node_count)
 
-print(type(ans))
-print(len(ans))
-
+'''
 for i in ans:
     print ("(", i.x,",",i.y,")")
 #ans = ourDFS(first_node, empty)
-
+'''
