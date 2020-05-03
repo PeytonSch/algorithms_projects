@@ -1,11 +1,16 @@
 def readFile(fileName='input.txt'):
+    #open our file in read mode
     f = open(fileName,'r')
-    firstLine = f.readline().split()
-    rows = int(firstLine[0])
-    cols = int(firstLine[1])
-    maze = []
+    #row and col info / size is on first line
+    row_col_info = f.readline().split()
+    rows = int(row_col_info[0])
+    cols = int(row_col_info[1])
+    #list to store nodes in
+    nodes = []
+    #read in rodes
     for row in range(rows):
         rowLine = f.readline().split()
-        maze.append(rowLine)
+        nodes.append(rowLine)
 
-    return maze
+    #return list of nodes 
+    return nodes

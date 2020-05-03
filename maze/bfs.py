@@ -17,7 +17,7 @@ def bfs(path,visited):
 
 
 
-def find_path_bfs(start):
+def run_bfs(start):
 
     queue = deque([("(1,1) ", start)])
     visited = set()
@@ -29,6 +29,6 @@ def find_path_bfs(start):
         if current in visited:
             continue
         visited.add(current)
-        for i in current.adj_list:
+        for i in current.adjacent_nodes:
             queue.append((path + "("+ str(i.x) +","+ str(i.y) +") ", i))
     return ""
